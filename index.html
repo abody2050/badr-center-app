@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مركز بدر لتعليم القرآن الكريم</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="header">
+        <img src="assets/logo.png" alt="شعار المركز" class="logo">
+        <h1 class="center-name">مركز بدر لتعليم القرآن الكريم</h1>
+        <div id="welcome-banner" class="welcome-banner">
+            <p id="welcome-message"></p>
+            <p id="date-info"></p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="student-management">
+            <h2>إدارة الطلاب</h2>
+            <div class="add-student-form">
+                <input type="text" id="student-name" placeholder="اسم الطالب">
+                <button id="add-student-btn">أضف طالباً</button>
+            </div>
+            <ul id="student-list" class="student-list"></ul>
+        </section>
+
+        <section class="daily-attendance">
+            <h2>
+                جدول اليوم: <span id="current-day-date"></span>
+                <button id="go-to-today-btn" class="today-btn">اليوم الحالي</button>
+            </h2>
+            <div class="date-picker">
+                <button id="prev-day-btn">اليوم السابق</button>
+                <input type="date" id="date-input" class="date-input">
+                <button id="next-day-btn">اليوم التالي</button>
+            </div>
+            <table id="attendance-table" class="attendance-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>اسم الطالب</th>
+                        <th>حفظ</th>
+                        <th>مراجعة</th>
+                        <th>غائب</th>
+                        <th>مستأذن</th>
+                    </tr>
+                </thead>
+                <tbody id="attendance-body">
+                    </tbody>
+            </table>
+            <button id="generate-message-btn" class="generate-btn">توليد الرسالة</button>
+        </section>
+
+        <section class="statistics">
+            <h2>الإحصائيات</h2>
+            <canvas id="stats-chart"></canvas>
+            <div id="student-stats-details" class="student-stats-details"></div>
+        </section>
+    </main>
+
+    <div id="message-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <pre id="message-preview"></pre>
+            <button id="copy-message-btn">نسخ الرسالة</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>مركز بدر لتعليم القرآن الكريم – إدارة حلقة زيد بن الدثنة</p>
+        <p class="developer-credit">تطوير: عبدالله مبارك</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
