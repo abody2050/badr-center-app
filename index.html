@@ -5,57 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مركز بدر لتعليم القرآن الكريم</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
     <header class="header">
-        <img src="assets/logo.png" alt="شعار المركز" class="logo">
-        <h1 class="center-name">مركز بدر لتعليم القرآن الكريم</h1>
-        <div id="welcome-banner" class="welcome-banner">
-            <p id="welcome-message"></p>
-            <p id="date-info"></p>
+        <div class="header-content">
+            <img src="assets/logo.png" alt="شعار المركز" class="logo">
+            <h1 class="center-name">مركز بدر لتعليم القرآن الكريم</h1>
+            <div id="welcome-banner" class="welcome-banner">
+                <p id="welcome-message"></p>
+                <p id="date-info"></p>
+            </div>
         </div>
     </header>
 
     <main class="container">
         <section class="student-management">
-            <h2>إدارة الطلاب</h2>
+            <h2><i class="fas fa-users"></i> إدارة الطلاب</h2>
             <div class="add-student-form">
                 <input type="text" id="student-name" placeholder="اسم الطالب">
-                <button id="add-student-btn">أضف طالباً</button>
+                <button id="add-student-btn"><i class="fas fa-plus"></i> أضف طالباً</button>
             </div>
             <ul id="student-list" class="student-list"></ul>
         </section>
 
         <section class="daily-attendance">
             <h2>
-                جدول اليوم: <span id="current-day-date"></span>
-                <button id="go-to-today-btn" class="today-btn">اليوم الحالي</button>
+                <i class="fas fa-calendar-alt"></i> جدول اليوم: <span id="current-day-date"></span>
+                <button id="go-to-today-btn" class="today-btn"><i class="fas fa-calendar-day"></i> اليوم الحالي</button>
             </h2>
             <div class="date-picker">
-                <button id="prev-day-btn">اليوم السابق</button>
+                <button id="prev-day-btn"><i class="fas fa-arrow-right"></i> اليوم السابق</button>
                 <input type="date" id="date-input" class="date-input">
-                <button id="next-day-btn">اليوم التالي</button>
+                <button id="next-day-btn">اليوم التالي <i class="fas fa-arrow-left"></i></button>
             </div>
-            <table id="attendance-table" class="attendance-table">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>اسم الطالب</th>
-                        <th>حفظ</th>
-                        <th>مراجعة</th>
-                        <th>غائب</th>
-                        <th>مستأذن</th>
-                    </tr>
-                </thead>
-                <tbody id="attendance-body">
+            <div class="table-container">
+                <table id="attendance-table" class="attendance-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>اسم الطالب</th>
+                            <th>حفظ</th>
+                            <th>مراجعة</th>
+                            <th>غائب</th>
+                            <th>مستأذن</th>
+                        </tr>
+                    </thead>
+                    <tbody id="attendance-body">
                     </tbody>
-            </table>
-            <button id="generate-message-btn" class="generate-btn">توليد الرسالة</button>
+                </table>
+            </div>
+            <button id="generate-message-btn" class="generate-btn"><i class="fas fa-comment"></i> تجهيز الرسالة</button>
         </section>
 
         <section class="statistics">
-            <h2>الإحصائيات</h2>
+            <h2><i class="fas fa-chart-bar"></i> الإحصائيات</h2>
+            
+            <div class="stats-filter">
+                <select id="stats-range">
+                    <option value="all">كل الفترة</option>
+                    <option value="today">هذا اليوم</option>
+                    <option value="week">هذا الأسبوع</option>
+                    <option value="month">هذا الشهر</option>
+                    <option value="lastMonth">الشهر السابق</option>
+                    <option value="lastWeek">الأسبوع السابق</option>
+                </select>
+            </div>
+            
             <canvas id="stats-chart"></canvas>
             <div id="student-stats-details" class="student-stats-details"></div>
         </section>
@@ -64,8 +81,9 @@
     <div id="message-modal" class="modal">
         <div class="modal-content">
             <span class="close-btn">&times;</span>
+            <h3>نص الرسالة</h3>
             <pre id="message-preview"></pre>
-            <button id="copy-message-btn">نسخ الرسالة</button>
+            <button id="copy-message-btn"><i class="fas fa-copy"></i> نسخ الرسالة</button>
         </div>
     </div>
 
@@ -75,6 +93,6 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="script.js"></script>
+    <script src="script.js"></script> 
 </body>
 </html>

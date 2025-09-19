@@ -1,62 +1,142 @@
 /* Fonts */
-@font-face {
-    font-family: 'Amiri';
-    src: url('assets/amiri-regular.woff') format('woff');
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Lateef:wght@400;700&display=swap');
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
-@font-face {
-    font-family: 'Lateef';
-    src: url('assets/lateef-regular.woff') format('woff');
+
+@keyframes slideIn {
+    from { transform: translateX(-20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+   100% { transform: scale(1); }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
 }
 
 /* General Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: 'Amiri', serif;
-    background-color: #f0f0f0;
+    background: linear-gradient(135deg, #f0f7ff 0%, #f0f0f0 100%);
     margin: 0;
     padding: 0;
     direction: rtl;
     text-align: right;
     line-height: 1.6;
+    color: #333;
 }
+
 .container {
-    max-width: 960px;
+    max-width: 1200px;
     margin: 20px auto;
     padding: 0 20px;
 }
-h1, h2 {
+
+h1, h2, h3 {
     font-family: 'Lateef', sans-serif;
     color: #2C7B4D;
     font-weight: bold;
 }
 
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #2C7B4D;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
 /* Header */
 .header {
-    background-color: #2C7B4D;
+    background: linear-gradient(135deg, #2C7B4D 0%, #24633d 100%);
     color: white;
-    padding: 20px;
+    padding: 20px 0;
     text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-out;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
+
 .logo {
-    width: 80px;
+    width: 100px;
     height: auto;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    border-radius: 50%;
+    border: 4px solid white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: pulse 2s infinite;
 }
+
+.center-name {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+    animation: slideIn 1s ease-out;
+}
+
 .welcome-banner {
-    font-size: 1.2em;
+    font-size: 1.2rem;
     margin-top: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px 20px;
+    border-radius: 30px;
+    backdrop-filter: blur(5px);
+    animation: fadeIn 1.5s ease-out;
 }
 
 /* Sections */
 section {
     background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 25px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeIn 0.8s ease-out;
+}
+
+section:nth-child(1) { animation-delay: 0.1s; }
+section:nth-child(2) { animation-delay: 0.2s; }
+section:nth-child(3) { animation-delay: 0.3s; }
+
+section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
 
 /* Student Management */
@@ -64,59 +144,125 @@ section {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
+    flex-wrap: wrap;
 }
+
 .add-student-form input {
     flex-grow: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
     font-family: inherit;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    min-width: 200px;
 }
+
+.add-student-form input:focus {
+    border-color: #2C7B4D;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(44, 123, 77, 0.2);
+}
+
 .student-list {
     list-style: none;
     padding: 0;
 }
+
 .student-list li {
-    padding: 10px;
+    padding: 15px;
     border-bottom: 1px solid #eee;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: background-color 0.3s;
+    animation: slideIn 0.5s ease-out;
 }
+
+.student-list li:hover {
+    background-color: #f9f9f9;
+}
+
 .student-list li:last-child {
     border-bottom: none;
 }
+
 .student-actions button {
     background-color: transparent;
     border: none;
-    color: #2C7B4D;
-    font-size: 1.2em;
+    font-size: 1.2rem;
     cursor: pointer;
     margin-right: 5px;
+    transition: transform 0.2s;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
+
+.student-actions .edit-btn {
+    color: #2C7B4D;
+    background-color: rgba(44, 123, 77, 0.1);
+}
+
 .student-actions .delete-btn {
     color: #c0392b;
+    background-color: rgba(192, 57, 43, 0.1);
+}
+
+.student-actions button:hover {
+    transform: scale(1.1);
 }
 
 /* Attendance Table */
+.table-container {
+    overflow-x: auto;
+    margin-top: 20px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    transition: all 0.3s ease;
+}
+
 .attendance-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
-    font-size: 1em;
+    font-size: 1rem;
+    min-width: 600px;
 }
+
 .attendance-table th, .attendance-table td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 12px;
     text-align: center;
+    transition: background-color 0.3s;
 }
+
 .attendance-table th {
-    background-color: #f2f2f2;
+    background-color: #f5f5f5;
+    font-weight: bold;
 }
+
+.attendance-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.attendance-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+
 .status-checkbox {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     cursor: pointer;
+    transition: transform 0.2s;
+    accent-color: #2C7B4D;
+}
+
+.status-checkbox:hover {
+    transform: scale(1.2);
 }
 
 /* Buttons */
@@ -124,48 +270,107 @@ button {
     background-color: #2C7B4D;
     color: white;
     border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+    padding: 12px 18px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s;
+    font-size: 1rem;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Amiri', serif;
 }
+
 button:hover {
     background-color: #24633d;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+button:active {
+    transform: translateY(0);
+}
+
 .generate-btn {
     width: 100%;
     margin-top: 20px;
+    justify-content: center;
+    padding: 15px;
+    font-size: 1.1rem;
 }
+
+.generate-btn:hover {
+    animation: none;
+}
+
 .date-picker {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
-/* New Styles for Date Navigation */
 .today-btn {
-    font-size: 0.8em;
-    padding: 5px 10px;
-    margin-right: 10px;
     background-color: #f1c40f;
     color: #333;
 }
+
+.today-btn:hover {
+    background-color: #d4ac0d;
+}
+
 .date-input {
     flex-grow: 1;
     background-color: white;
-    border: 1px solid #ccc;
-    padding: 8px;
-    border-radius: 5px;
+    border: 2px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
     font-family: inherit;
     cursor: pointer;
+    text-align: center;
+    max-width: 200px;
+    transition: border-color 0.3s;
 }
 
-/* New style for today's table */
+.date-input:focus {
+    border-color: #2C7B4D;
+    outline: none;
+}
+
+/* Today table style */
 .today-border {
     border: 3px solid #f1c40f;
     transition: border-color 0.3s ease;
+}
+
+.today-highlight {
+    color: #f0c106 !important;
+}
+
+/* Stats Filter */
+.stats-filter {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.stats-filter select {
+    padding: 10px 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    background-color: white;
+    cursor: pointer;
+    min-width: 150px;
+    transition: border-color 0.3s;
+}
+
+.stats-filter select:focus {
+    border-color: #2C7B4D;
+    outline: none;
 }
 
 /* Modal */
@@ -178,75 +383,106 @@ button:hover {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
 }
+
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
+    margin: 10% auto;
+    padding: 25px;
+    border: none;
     width: 90%;
-    max-width: 500px;
-    border-radius: 8px;
+    max-width: 600px;
+    border-radius: 12px;
     position: relative;
     text-align: right;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    animation: modalFade 0.3s;
 }
+
+@keyframes modalFade {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .close-btn {
     color: #aaa;
-    float: left;
+    position: absolute;
+    left: 20px;
+    top: 15px;
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
+    transition: color 0.3s;
 }
-.message-preview {
+
+.close-btn:hover {
+    color: #333;
+    animation: shake 0.5s;
+}
+
+#message-preview {
     white-space: pre-wrap;
     background-color: #f9f9f9;
-    padding: 15px;
-    border-radius: 5px;
+    padding: 20px;
+    border-radius: 8px;
     border: 1px solid #eee;
-    font-family: monospace;
-    font-size: 1em;
-    margin-bottom: 15px;
+    font-family: 'Amiri', serif;
+    font-size: 1.1rem;
+    margin: 15px 0;
+    line-height: 1.8;
+    max-height: 300px;
+    overflow-y: auto;
 }
 
 /* Student Stats Details */
 .student-stats-details {
-    margin-top: 20px;
-    padding-top: 15px;
+    margin-top: 25px;
+    padding-top: 20px;
     border-top: 1px solid #ddd;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
 }
 
 .student-stat-card {
-    background-color: #f9f9f9;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     text-align: center;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid #eee;
+    animation: fadeIn 0.5s ease-out;
 }
 
 .student-stat-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
 }
 
 .student-stat-card h3 {
     margin-top: 0;
     color: #2C7B4D;
-    font-size: 1.4em;
+    font-size: 1.4rem;
     border-bottom: 2px solid #2C7B4D;
-    padding-bottom: 5px;
-    margin-bottom: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    text-align: center;
 }
 
 .stat-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 0;
+    padding: 10px 0;
     border-bottom: 1px dashed #ddd;
 }
 
@@ -262,58 +498,144 @@ button:hover {
 .stat-value {
     font-weight: bold;
     color: #2C7B4D;
-    font-size: 1.1em;
+    font-size: 1.2rem;
 }
-
 
 /* Footer */
 .footer {
     text-align: center;
-    padding: 20px;
-    font-size: 0.9em;
+    padding: 25px;
+    font-size: 1rem;
     color: #555;
+    background-color: #f9f9f9;
+    margin-top: 40px;
+    border-top: 1px solid #eee;
+    animation: fadeIn 1s ease-out;
 }
+
 .developer-credit {
-    font-size: 0.8em;
+    font-size: 0.9rem;
     color: #888;
+    margin-top: 10px;
 }
 
-/* Responsive design adjustments */
-@media (max-width: 600px) {
+/* Notification */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #2C7B4D;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    z-index: 1001;
+    font-family: 'Amiri', serif;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: slideIn 0.5s, fadeIn 0.5s;
+}
+
+.notification.error {
+    background-color: #c0392b;
+}
+
+.notification i {
+    font-size: 1.2rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
     .container {
-        padding: 0 10px;
+        padding: 0 15px;
     }
-
+    
     h1 {
-        font-size: 1.5em;
+        font-size: 1.8rem;
     }
-
+    
     h2 {
-        font-size: 1.2em;
+        font-size: 1.5rem;
     }
-
-    .attendance-table {
-        font-size: 0.8em;
-        overflow-x: auto;
-        display: block;
-        white-space: nowrap;
+    
+    .header-content {
+        padding: 0 15px;
     }
-
-    .attendance-table th, .attendance-table td {
-        padding: 5px;
+    
+    .center-name {
+        font-size: 1.8rem;
     }
-
-    .status-checkbox {
-        width: 14px;
-        height: 14px;
+    
+    section {
+        padding: 20px;
     }
-
+    
+    .add-student-form {
+        flex-direction: column;
+    }
+    
+    .add-student-form input {
+        width: 100%;
+    }
+    
     .date-picker {
         flex-direction: column;
-        gap: 10px;
     }
+    
+    .date-input {
+        max-width: 100%;
+    }
+    
+    .attendance-table {
+        font-size: 0.9rem;
+    }
+    
+    .attendance-table th, 
+    .attendance-table td {
+        padding: 8px;
+    }
+    
+    .student-stat-card {
+        padding: 15px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+    
+    .stats-filter {
+        justify-content: center;
+    }
+}
 
-    .date-picker button {
-        width: 100%;
+@media (max-width: 480px) {
+    .center-name {
+        font-size: 1.5rem;
+    }
+    
+    .welcome-banner {
+        font-size: 1rem;
+    }
+    
+    h2 {
+        font-size: 1.3rem;
+    }
+    
+    button {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .student-actions button {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+    
+    .stat-item {
+        flex-direction: column;
+        gap: 5px;
     }
 }
